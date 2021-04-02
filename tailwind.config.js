@@ -15,7 +15,8 @@ module.exports = {
       "light-blue": colors.lightBlue,
       cyan: colors.cyan,
       white: colors.white,
-      purple: colors.violet
+      purple: colors.violet,
+      green: colors.emerald
     },
     fontFamily: {
       sans: ["'Libre Franklin'", "sans-serif"],

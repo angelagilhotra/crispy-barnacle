@@ -1,9 +1,7 @@
-// @todo add Malay's social links
-
 <template>
   <div>
     <div
-      class="min-h-screen min-w-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12"
+      class="min-h-screen min-w-screen bg-blue-50 py-6 flex flex-col justify-center sm:py-12"
     >
       <div class="relative py-3 sm:max-w-xl sm:mx-auto">
         <div
@@ -15,7 +13,7 @@
           <div class="max-w-md mx-auto">
             <div v-if="!fielding.loading">
               <div v-if="fielding.ok">
-                <p class="font-heading text-5xl">
+                <p class="font-heading font-bold text-5xl">
                   {{ fromApi.name }}
                 </p>
                 <div>
@@ -138,14 +136,20 @@
           </div>
         </div>
       </div>
-      <!-- <div class="static">
-        <div class="absolute bottom-0 left-0 p-5 font-kernel">
-          NFT design & code by
-          <a href="https://www.instagram.com/malayvasa/" target="_new"
-            >@malayvasa
+      <div class="static page-footer">
+        <div
+          class="absolute bottom-0 left-0 p-5 font-sans text-gray-400 text-sm"
+        >
+          Design & code by
+          <a href="https://www.twitter.com/angelagilhotra/" target="_new">
+            @angelagilhotra
+          </a>
+          , special thanks to
+          <a href="https://www.instagram.com/malayvasa/" target="_new">
+            @malayvasa
           </a>
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
 </template>

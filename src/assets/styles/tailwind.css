@@ -5,6 +5,9 @@
 a {
   border-bottom: 2px dashed #8C65F7;
 }
+.page-footer a {
+  border-bottom: 1px solid #ac90fa;
+}
 .spinner {
   width: 40px;
   height: 40px;
