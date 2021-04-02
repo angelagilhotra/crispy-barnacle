@@ -10,7 +10,7 @@
         <div
           class="relative px-1 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20"
         >
-          <p class="font-heading text-5xl">
+          <p class="font-heading text-5xl font-bold">
             404. You're heading the wrong way.
           </p>
         </div>
