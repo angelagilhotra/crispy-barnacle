@@ -505,7 +505,7 @@ module.exports = {
     addressLink: "https://blockscout.com/poa/xdai/address/<address>/tokens"
   },
   goerli: {
-    address: "0xd5E8Aee52694764d1d97A3E262aDb8EEe1fc972B",
+    address: "0x370bf702275915D5bE43E410beb18d1ca6B54B20",
     rpc: "https://goerli.infura.io/v3/f3ffe28620114fd2bd00c5a3ebe55558",
     chainId: 5,
     txHashLink: "https://goerli.etherscan.io/tx/<transaction>",
