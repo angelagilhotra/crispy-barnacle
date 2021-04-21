@@ -5,6 +5,9 @@
 a {
   border-bottom: 2px dashed #8C65F7;
 }
+.tweet-link a {
+  border-bottom: none;
+}
 .page-footer a {
   border-bottom: 1px solid #ac90fa;
 }

@@ -10,6 +10,18 @@
         <div
           class="relative px-1 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20"
         >
+          <div
+            class="absolute bottom-0 left-0 p-5 font-fancy text-gray-400 text-lg"
+            v-if="!fielding.loading"
+          >
+            fancy a
+            <span class="tweet-link">
+              <a :href="tweetText" target="_new" class="text-blue-500"
+                >tweet <font-awesome-icon :icon="['fab', 'twitter']"
+              /></a>
+              ?
+            </span>
+          </div>
           <div class="max-w-md mx-auto">
             <div v-if="!fielding.loading">
               <div v-if="fielding.ok">
@@ -17,18 +29,19 @@
                   {{ fromApi.name }}
                 </p>
                 <div>
-                  token id:
-                  <span
-                    class="font-mono text-xs border-dashed border-b-2 border-gray-600 cursor-pointer"
-                    @click="$store.commit('togglePanel', true)"
-                  >
-                    {{ fromApi.token }}
+                  <span class="mr-1">
+                    token id:
+                    <span
+                      class="font-mono text-xs border-dashed border-b-2 border-gray-600 cursor-pointer"
+                      @click="$store.commit('togglePanel', true)"
+                      >{{ fromApi.token }}</span
+                    >
                   </span>
-                </div>
-                <div>
-                  network:
-                  <span class="font-mono text-xs">
-                    {{ network }}
+                  <span>
+                    network:
+                    <span class="font-mono text-xs">
+                      {{ network }}
+                    </span>
                   </span>
                 </div>
                 <!-- <p class="font-heading text-5xl">
@@ -66,8 +79,6 @@
                       >
                         Connect Metamask
                       </button>
-                      <!-- <p>account: {{ $store.getters.account }}</p>
-                    <p>network id: {{ $store.getters.network }}</p> -->
                     </div>
                     <!-- display if metamask is connected -->
                     <div v-else>
@@ -196,7 +207,8 @@ export default {
       },
       loading: false,
       isOpen: true,
-      network: contractAssets.active
+      network: contractAssets.active,
+      tweetText: ""
     };
   },
   beforeCreate: async function() {
@@ -230,6 +242,11 @@ export default {
         gratitude,
         image
       };
+      let tweet =
+        "Just received my bundle of web3 goodness (as unique as my personality 😉) from @kernel0x. Check out my Gratitude NFT: https://gratitude.kernel.community" +
+        this.$route.fullPath;
+      this.$data.tweetText =
+        "http://twitter.com/intent/tweet?text=" + encodeURIComponent(tweet);
     } else {
       this.$data.fielding.notAuthMsg = "Access is by Invitation only";
     }
@@ -244,10 +261,6 @@ export default {
       "<address>",
       this.$store.getters.account
     );
-    // "https://blockscout.com/poa/xdai/address/" +
-    // this.$store.getters.account +
-    // "/tokens";
-
     // check claim status
     let ownerOf = contract.methods.ownerOf(this.$data.fromApi.token.toString());
     let currentOwner;

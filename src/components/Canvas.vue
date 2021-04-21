@@ -30,8 +30,10 @@ export default {
         "#FFFFFF"
       ];
       let seed = 1000;
-      let name = this.$props.fellowName;
-
+      let name =
+        this.$props.fellowName.replace(/\s+/g, "-").toLowerCase() +
+        ":" +
+        this.$route.params.hash;
       p5.setup = () => {
         p5.rectMode(p5.CENTER);
         let canvasDiv = document.getElementById("canvas");

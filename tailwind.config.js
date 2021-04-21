@@ -33,7 +33,8 @@ module.exports = {
       fontFamily: {
         mono: ['"B612 Mono"', ...defaultTheme.fontFamily.mono],
         heading: ['"Playfair Display"'],
-        kernel: ['"Miriam Libre"']
+        kernel: ['"Miriam Libre"'],
+        fancy: ['"Lora"']
       }
     }
   },

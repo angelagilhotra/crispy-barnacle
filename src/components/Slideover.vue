@@ -51,7 +51,7 @@
           leave-to-class="translate-x-full"
         >
           <div
-            class="relative w-screen max-w-md"
+            class="relative w-screen max-w-lg"
             v-if="$store.getters.panelOpen"
           >
             <!--
@@ -126,10 +126,10 @@
                 <!-- Replace with your content -->
                 <div class="absolute inset-0 px-4 sm:px-6">
                   <div
-                    class="h-full border-2 border-dashed border-gray-200"
+                    class="h-full border-2 border-dashed border-gray-200 overscroll-auto block whitespace-pre overflow-x-scroll"
                     aria-hidden="true"
                   >
-                    <code class="block whitespace-pre overflow-x-scroll">
+                    <code class="">
                       <pre>{{ JSON.stringify(metadata, null, 2) }} </pre>
                     </code>
                   </div>
