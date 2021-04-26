@@ -14,6 +14,7 @@ export default {
     }
   },
   mounted() {
+    let cnv;
     const script = p5 => {
       let colors = [
         "#5BF1CD",
@@ -37,7 +38,7 @@ export default {
       p5.setup = () => {
         p5.rectMode(p5.CENTER);
         let canvasDiv = document.getElementById("canvas");
-        p5.createCanvas(canvasDiv.offsetWidth, canvasDiv.offsetHeight);
+        cnv = p5.createCanvas(canvasDiv.offsetWidth, canvasDiv.offsetHeight);
         for (let i = 0; i < name.length; i++) {
           seed = seed + name.charCodeAt(i);
         }
@@ -88,6 +89,9 @@ export default {
     // Attach the canvas to the div
     // eslint-disable-next-line no-unused-vars
     const p5canvas = new P5(script, "canvas");
+    let imageBase64String = cnv.elt.toDataURL();
+    this.$store.commit("updateImage", imageBase64String);
+    // console.log(imageBase64String);
   }
 };
 </script>

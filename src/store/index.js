@@ -12,9 +12,13 @@ export default new Vuex.Store({
     claim_status: "",
     panelOpen: false,
     tokenMetadata: {},
-    token: ""
+    token: "",
+    tokenImage: ""
   },
   mutations: {
+    updateImage(state, base64String) {
+      state.tokenImage = base64String;
+    },
     change(state, obj) {
       state.account = obj.account;
       state.network = obj.network;
@@ -42,7 +46,8 @@ export default new Vuex.Store({
     claim_status: state => state.claim_status,
     panelOpen: state => state.panelOpen,
     tokenMetadata: state => state.tokenMetadata,
-    token: state => state.token
+    token: state => state.token,
+    tokenImage: state => state.tokenImage
   },
   actions: {},
   modules: {}

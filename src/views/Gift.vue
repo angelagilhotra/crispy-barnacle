@@ -83,6 +83,13 @@
                     <!-- display if metamask is connected -->
                     <div v-else>
                       <!-- display if the metamask is connected to the correct network -->
+                      <!-- <button
+                        class="bg-purple-500 hover:bg-purple-900 text-white font-bold py-3 px-4 mr-2 rounded-lg shadow-2xl font-kernel"
+                        v-on:click="generate"
+                        v-if="$store.getters.network == $store.getters.chainId"
+                      >
+                        Generate NFT
+                      </button> -->
                       <button
                         class="bg-purple-500 hover:bg-purple-900 text-white font-bold py-3 px-4 rounded-lg shadow-2xl font-kernel"
                         v-on:click="claim"
@@ -233,7 +240,8 @@ export default {
       const { name, token } = r.data.data.details;
       this.$store.commit("addToken", token);
       const { proof } = r.data.data;
-      const { award, gratitude, image } = r.data.data.metadata;
+      const { image } = r.data.data.metadata;
+      const { gratitude, award } = r.data.data.metadata.attributes;
       this.$data.fromApi = {
         name,
         token,
@@ -292,6 +300,19 @@ export default {
     },
     claim: async function() {
       this.$data.loading = true;
+
+      // send generated image
+      const image = this.$store.getters.tokenImage;
+      await axios
+        .post("https://testing-gift-api.herokuapp.com/gift/upload", {
+          image: image,
+          hash: this.$route.params.hash,
+          token: this.$data.fromApi.token
+        })
+        .then(response => {
+          console.log(response);
+        });
+
       let mintFunction = contract.methods.mintGift(
         this.$store.getters.account,
         this.$data.fromApi.token.toString(),
@@ -356,6 +377,20 @@ export default {
       }
       this.$data.loading = false;
     }
+    // generate: async function() {
+    //   console.log("from store:", this.$store.getters.tokenImage);
+    //   console.log("posting");
+    //   const image = this.$store.getters.tokenImage;
+    //   await axios
+    //     .post("http://localhost:3000/gift/upload", {
+    //       image: image,
+    //       hash: this.$route.params.hash,
+    //       token: this.$data.fromApi.token
+    //     })
+    //     .then(response => {
+    //       console.log(response);
+    //     });
+    // }
   }
 };
 </script>
