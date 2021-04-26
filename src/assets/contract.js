@@ -518,5 +518,12 @@ module.exports = {
     txHashLink: "https://rinkeby.etherscan.io/tx/<transaction>",
     addressLink: "https://rinkeby.etherscan.io/address/<address>"
   },
+  mainnet: {
+    address: "",
+    rpc: "https://mainnet.infura.io/v3/f3ffe28620114fd2bd00c5a3ebe55558",
+    chainId: 1,
+    txHashLink: "https://mainnet.etherscan.io/tx/<transaction>",
+    addressLink: "https://mainnet.etherscan.io/address/<address>"
+  },
   active: "rinkeby"
 };

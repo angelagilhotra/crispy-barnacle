@@ -22,21 +22,23 @@
               ?
             </span>
           </div>
+          <div class="absolute bottom-0 right-0 p-5" v-if="!fielding.loading">
+            <span class="mr-1">
+              token id:
+              <span
+                class="font-mono text-xs border-dashed border-b-2 border-gray-600 cursor-pointer"
+                @click="$store.commit('togglePanel', true)"
+                >{{ fromApi.token }}</span
+              >
+            </span>
+          </div>
           <div class="max-w-md mx-auto">
             <div v-if="!fielding.loading">
               <div v-if="fielding.ok">
                 <p class="font-heading font-bold text-5xl">
                   {{ fromApi.name }}
                 </p>
-                <div>
-                  <span class="mr-1">
-                    token id:
-                    <span
-                      class="font-mono text-xs border-dashed border-b-2 border-gray-600 cursor-pointer"
-                      @click="$store.commit('togglePanel', true)"
-                      >{{ fromApi.token }}</span
-                    >
-                  </span>
+                <div v-if="network != 'mainnet'" class="text-gray-400">
                   <span>
                     network:
                     <span class="font-mono text-xs">
@@ -54,8 +56,11 @@
                 <div>
                   <!-- <p>claim: {{ fromApi.claim_status }}</p> -->
                   <!-- <p>proof: {{ fromApi.proof }}</p> -->
-                  <p v-if="Object.keys(fromApi.award).length > 0">
-                    award: {{ fromApi.award }}
+                  <p
+                    v-if="Object.keys(fromApi.award).length > 0"
+                    class="font-award text-4xl mt-5"
+                  >
+                    {{ fromApi.award }}
                   </p>
                   <!-- <p v-if="fromApi.gratitude">gratitude: {{ fromApi.gratitude }}</p> -->
                   <!-- <p>image: {{ fromApi.image }}</p> -->
