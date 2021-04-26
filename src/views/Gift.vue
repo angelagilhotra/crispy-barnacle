@@ -174,12 +174,14 @@
 
 <script>
 import Canvas from "@/components/Canvas";
-
 const axios = require("axios");
 const Web3 = require("web3");
 const contractAssets = require("../assets/contract");
 const contractNetwork = contractAssets[contractAssets.active];
 const web3 = new Web3(contractNetwork.rpc);
+const config = require("../config");
+const { env } = config;
+const apiUrl = config[env]["domain"];
 const contract = new web3.eth.Contract(
   JSON.parse(contractAssets.abi),
   contractNetwork.address
@@ -226,9 +228,7 @@ export default {
   created: async function() {
     this.$data.fielding.loading = true;
     // fetch hash details
-    let r = await axios.get(
-      "https://testing-gift-api.herokuapp.com/gift/hash/" + this.$props.hash
-    );
+    let r = await axios.get(apiUrl + "/gift/hash/" + this.$props.hash);
 
     // details fetched -> set loading to false
     this.$data.fielding.loading = false;
@@ -304,7 +304,7 @@ export default {
       // send generated image
       const image = this.$store.getters.tokenImage;
       await axios
-        .post("https://testing-gift-api.herokuapp.com/gift/upload", {
+        .post(apiUrl + "/gift/upload", {
           image: image,
           hash: this.$route.params.hash,
           token: this.$data.fromApi.token

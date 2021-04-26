@@ -147,6 +147,9 @@
 const axios = require("axios");
 const contractAssets = require("../assets/contract");
 const contractNetwork = contractAssets[contractAssets.active];
+const config = require("../config");
+const { env } = config;
+const apiUrl = config[env]["domain"];
 export default {
   data: () => {
     return {
@@ -162,12 +165,11 @@ export default {
     "$store.state.token": async function() {
       console.log(
         "sending req,",
-        "https://testing-gift-api.herokuapp.com/gift/raw/",
+        apiUrl + "/gift/raw/",
         this.$store.getters.token
       );
       let r = await axios.get(
-        "https://testing-gift-api.herokuapp.com/gift/raw/" +
-          this.$store.getters.token
+        apiUrl + "/gift/raw/" + this.$store.getters.token
       );
       this.$data.metadata = r.data;
     }
