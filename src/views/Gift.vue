@@ -241,7 +241,7 @@ export default {
       this.$store.commit("addToken", token);
       const { proof } = r.data.data;
       const { image } = r.data.data.metadata;
-      const { gratitude, award } = r.data.data.metadata.attributes;
+      const { gratitude, award } = r.data.data.metadata;
       this.$data.fromApi = {
         name,
         token,
