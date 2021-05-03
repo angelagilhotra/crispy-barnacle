@@ -140,7 +140,8 @@
                     <div v-if="metadata.testimonial">
                       <p class="font-fancy">
                         {{ metadata.testimonial }} <br />
-                        from the Stewards
+                        <br />
+                        ~ from the Stewards
                       </p>
                     </div>
                     <div v-if="metadata.gratitude.count > 0">
