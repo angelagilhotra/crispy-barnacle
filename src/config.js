@@ -4,9 +4,9 @@ module.exports = {
     domain: "http://localhost:3000"
   },
   staging: {
-    domain: "https://testing-gift-api.herokuapp.com"
+    domain: "https://api-kernel.herokuapp.com"
   },
   prod: {
-    domain: "http://api.kernel.community"
+    domain: "https://api.kernel.community"
   }
 };
