@@ -140,7 +140,6 @@
                     <div v-if="metadata.testimonial">
                       <p class="font-fancy">
                         {{ metadata.testimonial }} <br />
-                        <br />
                         ~ from the Stewards
                       </p>
                     </div>
