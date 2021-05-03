@@ -522,8 +522,8 @@ module.exports = {
     address: "0x1c39d4c8ad7ce5206355d43e343f5136ba5ca50f",
     rpc: "https://mainnet.infura.io/v3/f3ffe28620114fd2bd00c5a3ebe55558",
     chainId: 1,
-    txHashLink: "https://mainnet.etherscan.io/tx/<transaction>",
-    addressLink: "https://mainnet.etherscan.io/address/<address>"
+    txHashLink: "https://etherscan.io/tx/<transaction>",
+    addressLink: "https://etherscan.io/address/<address>"
   },
   active: "mainnet"
 };
