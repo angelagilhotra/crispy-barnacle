@@ -1,12 +1,15 @@
 module.exports = {
   env: "staging",
   local: {
-    domain: "http://localhost:3000"
+    server: "http://localhost:3000",
+    frontend: "http://localhost:8080"
   },
   staging: {
-    domain: "https://api-kernel.herokuapp.com"
+    server: "https://api-kernel.herokuapp.com",
+    frontend: "https://gratitude.kernel.community"
   },
   prod: {
-    domain: "https://api.kernel.community"
+    domain: "https://api.kernel.community",
+    frontend: "https://gratitude.kernel.community"
   }
 };

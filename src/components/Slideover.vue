@@ -51,7 +51,7 @@
           leave-to-class="translate-x-full"
         >
           <div
-            class="relative w-screen max-w-lg"
+            class="relative w-screen max-w-xl"
             v-if="$store.getters.panelOpen"
           >
             <!--
@@ -109,16 +109,24 @@
                   class="text-lg font-medium text-gray-900"
                   id="slide-over-title"
                 >
-                  Token Metadata
+                  Token Details
                 </h2>
                 <span>
-                  Contract:
+                  View&nbsp;
                   <a
                     class="font-mono text-xs border-dashed border-b-1 border-gray-600 cursor-pointer"
                     :href="contractAddressLink"
                     target="_new"
                   >
-                    {{ contractNetwork.address }}
+                    contract</a
+                  >
+                  or
+                  <a
+                    class="font-mono text-xs border-dashed border-b-1 border-gray-600 cursor-pointer"
+                    :href="metadataLink"
+                    target="_new"
+                  >
+                    token's metadata
                   </a>
                 </span>
               </div>
@@ -126,12 +134,38 @@
                 <!-- Replace with your content -->
                 <div class="absolute inset-0 px-4 sm:px-6">
                   <div
-                    class="h-full border-2 border-dashed border-gray-200 overscroll-auto block whitespace-pre overflow-x-scroll"
+                    class="h-full border-2 border-dashed border-gray-200 overscroll-auto block overflow-x-scroll p-4"
                     aria-hidden="true"
                   >
-                    <code class="">
+                    <div v-if="metadata.testimonial">
+                      <p class="font-fancy">
+                        {{ metadata.testimonial }} <br />
+                        from the Stewards
+                      </p>
+                    </div>
+                    <div v-if="metadata.gratitude.count > 0">
+                      <div class="grid grid-cols-1 gap-4 mt-4">
+                        <div
+                          v-for="item in metadata.gratitude.received"
+                          :key="item.message"
+                          class="font-sans"
+                        >
+                          {{ item.message }} <br />
+                          <span class="font-kernel">{{ "~ " + item.by }}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      v-if="
+                        !metadata.testimonial && metadata.gratitude.count == 0
+                      "
+                      class="font-fancy text-3xl"
+                    >
+                      Thank you for being a part of KERNEL.
+                    </div>
+                    <!-- <code class="">
                       <pre>{{ JSON.stringify(metadata, null, 2) }} </pre>
-                    </code>
+                    </code> -->
                   </div>
                 </div>
                 <!-- /End replace -->
@@ -149,7 +183,7 @@ const contractAssets = require("../assets/contract");
 const contractNetwork = contractAssets[contractAssets.active];
 const config = require("../config");
 const { env } = config;
-const apiUrl = config[env]["domain"];
+const apiUrl = config[env]["server"];
 export default {
   data: () => {
     return {
@@ -158,7 +192,8 @@ export default {
       contractAddressLink: contractNetwork.addressLink.replace(
         "<address>",
         contractNetwork.address
-      )
+      ),
+      metadataLink: ""
     };
   },
   watch: {
@@ -172,6 +207,8 @@ export default {
         apiUrl + "/gift/raw/" + this.$store.getters.token
       );
       this.$data.metadata = r.data;
+      this.$data.metadataLink =
+        apiUrl + "/gift/raw/" + this.$store.getters.token;
     }
   },
   methods: {

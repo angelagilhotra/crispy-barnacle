@@ -24,9 +24,9 @@
           </div>
           <div class="absolute bottom-0 right-0 p-5" v-if="!fielding.loading">
             <span class="mr-1">
-              token id:
+              View Token Details,
               <span
-                class="font-mono text-xs border-dashed border-b-2 border-gray-600 cursor-pointer"
+                class="font-mono text-xs border-solid border-b-2 border-gray-600 cursor-pointer"
                 @click="$store.commit('togglePanel', true)"
                 >{{ fromApi.token }}</span
               >
@@ -186,7 +186,7 @@ const contractNetwork = contractAssets[contractAssets.active];
 const web3 = new Web3(contractNetwork.rpc);
 const config = require("../config");
 const { env } = config;
-const apiUrl = config[env]["domain"];
+const apiUrl = config[env]["server"];
 const contract = new web3.eth.Contract(
   JSON.parse(contractAssets.abi),
   contractNetwork.address
