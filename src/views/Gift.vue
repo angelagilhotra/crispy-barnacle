@@ -281,7 +281,7 @@ export default {
         image
       };
       let tweet =
-        "Just received my bundle of web3 goodness (as unique as my personality 😉) from @kernel0x. Check out my Gratitude NFT: https://gratitude.kernel.community" +
+        "Just received a token of web3 appreciation (as non-fungible as me 😉) for helping co-create @KERNEL0x.\n\nCheck out my kernels 🌱: https://gratitude.kernel.community" +
         this.$route.fullPath;
       this.$data.tweetText =
         "http://twitter.com/intent/tweet?text=" + encodeURIComponent(tweet);
