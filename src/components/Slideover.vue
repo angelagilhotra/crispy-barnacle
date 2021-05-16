@@ -119,15 +119,7 @@
                     target="_new"
                   >
                     contract</a
-                  >
-                  or
-                  <a
-                    class="font-mono text-xs border-dashed border-b-1 border-gray-600 cursor-pointer"
-                    :href="metadataLink"
-                    target="_new"
-                  >
-                    token's metadata
-                  </a>
+                  >.
                 </span>
               </div>
               <div class="mt-6 relative flex-1 px-4 sm:px-6">

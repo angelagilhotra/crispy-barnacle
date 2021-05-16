@@ -1,17 +1,17 @@
 <template>
   <div>
     <div
-      class="min-h-screen min-w-screen bg-blue-50 py-6 flex flex-col justify-center sm:py-12"
+      class="min-h-screen min-w-screen py-6 flex flex-col justify-center sm:py-12"
     >
       <div class="relative py-3 sm:max-w-xl sm:mx-auto">
         <div
           class="absolute inset-0 bg-gradient-to-r from-purple-500 to-purple-900 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"
         ></div>
         <div
-          class="relative px-1 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20"
+          class="relative px-1 py-10 bg-gray-50 shadow-lg sm:rounded-3xl sm:p-20"
         >
           <div
-            class="absolute bottom-0 left-0 p-5 font-fancy text-gray-400 text-lg"
+            class="invisible sm:visible absolute sm:bottom-0 sm:left-0 sm:p-5 font-fancy text-gray-400 text-lg"
             v-if="!fielding.loading"
           >
             fancy a
@@ -22,20 +22,37 @@
               ?
             </span>
           </div>
-          <div class="absolute bottom-0 right-0 p-5" v-if="!fielding.loading">
-            <span class="mr-1">
-              View Token Details,
+          <div
+            class="invisible sm:visible sm:absolute sm:bottom-0 sm:bottom-0 sm:right-0 sm:p-5"
+            v-if="!fielding.loading"
+          >
+            <span class="mr-1 font-fancy">
               <span
-                class="font-mono text-xs border-solid border-b-2 border-gray-600 cursor-pointer"
+                class="border-solid border-b-2 border-gray-600 cursor-pointer"
                 @click="$store.commit('togglePanel', true)"
-                >{{ fromApi.token }}</span
               >
+                View Testimonials
+              </span>
+            </span>
+          </div>
+          <div class="absolute bottom-0 p-3 sm:invisible">
+            <span class="tweet-link">
+              <a :href="tweetText" target="_new" class="text-blue-500"
+                >Tweet <font-awesome-icon :icon="['fab', 'twitter']"
+              /></a>
+            </span>
+            |
+            <span
+              class="border-solid border-b-2 border-gray-600 cursor-pointer"
+              @click="$store.commit('togglePanel', true)"
+            >
+              View Testimonials
             </span>
           </div>
           <div class="max-w-md mx-auto">
             <div v-if="!fielding.loading">
               <div v-if="fielding.ok">
-                <p class="font-heading font-bold text-5xl">
+                <p class="font-heading font-bold text-4xl sm:text-5xl">
                   {{ fromApi.name }}
                 </p>
                 <div v-if="network != 'mainnet'" class="text-gray-400">
@@ -45,6 +62,10 @@
                       {{ network }}
                     </span>
                   </span>
+                </div>
+                <div class="text-gray-400 text-xs">
+                  token id:
+                  {{ fromApi.token }}
                 </div>
                 <!-- <p class="font-heading text-5xl">
               Hello!
@@ -96,7 +117,7 @@
                         Generate NFT
                       </button> -->
                       <button
-                        class="bg-purple-500 hover:bg-purple-900 text-white font-bold py-3 px-4 rounded-lg shadow-2xl font-kernel"
+                        class="bg-purple-500 hover:bg-purple-900 text-white font-bold mb-4 py-3 px-4 rounded-lg shadow-2xl font-kernel"
                         v-on:click="claim"
                         v-if="$store.getters.network == $store.getters.chainId"
                       >
@@ -159,15 +180,19 @@
           </div>
         </div>
       </div>
-      <div class="static page-footer">
+      <div class="static page-footer bottom-0 left-0">
         <div
-          class="absolute bottom-0 left-0 p-5 font-sans text-gray-400 text-sm"
+          class="absolute md:bottom-0 md:left-0 p-5 mt-6 font-sans text-gray-400 text-sm"
         >
-          Design & code by
+          <span>
+            Design & code by
+          </span>
           <a href="https://www.twitter.com/angelagilhotra/" target="_new">
             @angelagilhotra
           </a>
-          , special thanks to
+          <span>
+            , special thanks to
+          </span>
           <a href="https://www.instagram.com/malayvasa/" target="_new">
             @malayvasa
           </a>
